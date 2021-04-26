@@ -1,0 +1,8 @@
+#!/usr/bin/env ruby
+
+set -e
+
+puts '== Installing dependencies =='
+system 'gem install bundler --conservative'
+system('bundle check') || system('bundle install')
+puts '== All dependencies have been installed =='
