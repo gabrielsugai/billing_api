@@ -8,4 +8,9 @@ class Billing
     @value = value
     @expiration = expiration
   end
+
+  def self.all
+    response = JSON.parse(File.read('spec/fixtures/card_billings.json'), symbolize_names: true)
+    response.map { |invoice| new(**invoice) }
+  end
 end
