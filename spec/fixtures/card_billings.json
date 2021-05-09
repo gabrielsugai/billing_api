@@ -11,5 +11,12 @@
     "payment_token":"266b38fe6b329a91394181ebf56ccb440c9e26e1",
     "value":100,
     "expiration":"26/04/2033"
+  },
+
+  { "token":"d3717779bc7b47b10b3b0c6dea1f269064b58e6f",
+    "payment_method":"pix",
+    "payment_token":"a9dca12fcb0b80dcc097ee7e8e1ee3e95d73d3e5",
+    "value":100,
+    "expiration":"26/04/2033"
   }
 ]

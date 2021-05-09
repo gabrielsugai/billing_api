@@ -13,4 +13,8 @@ class Billing
     response = JSON.parse(File.read('spec/fixtures/card_billings.json'), symbolize_names: true)
     response.map { |invoice| new(**invoice) }
   end
+
+  def self.where(payment_method:)
+    all.select { |invoice| invoice.payment_method == payment_method }
+  end
 end

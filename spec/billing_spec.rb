@@ -22,4 +22,12 @@ describe Billing do
     expect(billings.class).to eq(Array)
     expect(billings.first.class).to eq(Billing)
   end
+
+  it 'Lista apenas cobrancas por cartao' do
+    billings = Billing.where(payment_method: 'credit_card')
+
+    expect(billings.size).to eq(2)
+    expect(billings.first.payment_method).to eq('credit_card')
+    expect(billings.last.payment_method).not_to eq('pix')
+  end
 end
