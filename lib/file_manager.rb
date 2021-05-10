@@ -1,13 +1,20 @@
+require 'database'
+
 class FileManager
 
   def self.create(billings)
     date = Time.now.strftime('%Y%m%d')
     method = billings.first.payment_method.upcase
-
-    file = File.open("data/#{date}_#{method}_EMISSAO.txt", 'w+')
+    title = "#{date}_#{method}_EMISSAO.txt"
+    file = File.open("data/#{title}", 'w+')
 
     file.write("#{header(billings)}\n")
-    billings.each { |billing| file.write("#{body(billing)}\n")}
+
+    billings.each do |billing|
+      file.write("#{body(billing)}\n")
+      Database.create(billing: billing, file: title, date: date)
+    end
+
     file.write(footer(billings))
 
     file.close

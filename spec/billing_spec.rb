@@ -79,6 +79,7 @@ describe Billing do
     body = FileManager.body(billings.first)
     footer = FileManager.footer(billings)
 
+    allow(Database).to receive(:create).and_return('Finge que salvou')
     FileManager.create(billings)
 
     expect(File.read("data/20210510_PIX_EMISSAO.txt")).to include(header)
