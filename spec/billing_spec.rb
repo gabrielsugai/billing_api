@@ -72,4 +72,17 @@ describe Billing do
 
     expect(footer).to eq('F 000000000000200')
   end
+
+  it 'Cria o arquivo com cabecalho corpo e rodape' do
+    billings = Billing.where(payment_method: 'pix')
+    header = FileManager.header(billings)
+    body = FileManager.body(billings.first)
+    footer = FileManager.footer(billings)
+
+    FileManager.create(billings)
+
+    expect(File.read("data/20210510_PIX_EMISSAO.txt")).to include(header)
+    expect(File.read("data/20210510_PIX_EMISSAO.txt")).to include(body)
+    expect(File.read("data/20210510_PIX_EMISSAO.txt")).to include(footer)
+  end
 end

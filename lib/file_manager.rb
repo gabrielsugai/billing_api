@@ -1,4 +1,18 @@
 class FileManager
+
+  def self.create(billings)
+    date = Time.now.strftime('%Y%m%d')
+    method = billings.first.payment_method.upcase
+
+    file = File.open("data/#{date}_#{method}_EMISSAO.txt", 'w+')
+
+    file.write("#{header(billings)}\n")
+    billings.each { |billing| file.write("#{body(billing)}\n")}
+    file.write(footer(billings))
+
+    file.close
+  end
+
   def self.header(billings)
     "H #{'%05d' % billings.size}"
   end
