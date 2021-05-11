@@ -6,3 +6,12 @@ services:
       - .:/opt/app
     stdin_open: true
     tty: true
+    environment:
+      REDIS_HOST: db
+    depends_on:
+      - db
+  db:
+    image: redis:latest
+    command: redis-server
+    ports:
+      - "6379:6379"
